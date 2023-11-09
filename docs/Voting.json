@@ -1,0 +1,107 @@
+{
+    "methods": {
+        "addEligibleVoter(address)": {
+            "stateMutability": "nonpayable",
+            "code": "function addEligibleVoter(address _voter) external nonpayable",
+            "inputs": {
+                "_voter": {
+                    "type": "address"
+                }
+            },
+            "outputs": {}
+        },
+        "admin()": {
+            "stateMutability": "view",
+            "code": "function admin() external view returns (address)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        },
+        "allowedAddresses(address)": {
+            "stateMutability": "view",
+            "code": "function allowedAddresses(address) external view returns (bool)",
+            "inputs": {
+                "_0": {
+                    "type": "address"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "bool"
+                }
+            }
+        },
+        "eligibleVoters(uint256)": {
+            "stateMutability": "view",
+            "code": "function eligibleVoters(uint256) external view returns (address)",
+            "inputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        },
+        "removeEligibleVoter(address)": {
+            "stateMutability": "nonpayable",
+            "code": "function removeEligibleVoter(address _voter) external nonpayable",
+            "inputs": {
+                "_voter": {
+                    "type": "address"
+                }
+            },
+            "outputs": {}
+        },
+        "vote(uint256)": {
+            "stateMutability": "nonpayable",
+            "code": "function vote(uint256 _candidate) external nonpayable",
+            "inputs": {
+                "_candidate": {
+                    "type": "uint256"
+                }
+            },
+            "outputs": {}
+        },
+        "voteCount(uint256)": {
+            "stateMutability": "view",
+            "code": "function voteCount(uint256) external view returns (uint256)",
+            "inputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            }
+        },
+        "voters(address)": {
+            "stateMutability": "view",
+            "code": "function voters(address) external view returns (bool voted, uint256 vote)",
+            "inputs": {
+                "_0": {
+                    "type": "address"
+                }
+            },
+            "outputs": {
+                "voted": {
+                    "type": "bool"
+                },
+                "vote": {
+                    "type": "uint256"
+                }
+            }
+        }
+    },
+    "events": {},
+    "errors": {},
+    "path": "",
+    "name": "Voting"
+}
