@@ -87,6 +87,28 @@ function eligibleVoters(uint256) external view returns (address)
 |---|---|---|
 | _0 | address | undefined |
 
+### hashingVote
+
+```solidity
+function hashingVote(bytes32 _candidate) external pure returns (uint256)
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| _candidate | bytes32 | undefined |
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
+
 ### removeEligibleVoter
 
 ```solidity
@@ -103,10 +125,10 @@ function removeEligibleVoter(address _voter) external nonpayable
 |---|---|---|
 | _voter | address | undefined |
 
-### vote
+### stringToUint
 
 ```solidity
-function vote(uint256 _candidate) external nonpayable
+function stringToUint(string _str) external pure returns (uint256)
 ```
 
 
@@ -117,7 +139,35 @@ function vote(uint256 _candidate) external nonpayable
 
 | Name | Type | Description |
 |---|---|---|
-| _candidate | uint256 | undefined |
+| _str | string | undefined |
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
+
+### vote
+
+```solidity
+function vote(string _candidate) external nonpayable returns (uint256)
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| _candidate | string | undefined |
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
 
 ### voteCount
 
@@ -144,7 +194,7 @@ function voteCount(uint256) external view returns (uint256)
 ### voters
 
 ```solidity
-function voters(address) external view returns (bool voted, uint256 vote)
+function voters(address) external view returns (bool voted, uint256 vote, bytes32 encryptedVote)
 ```
 
 
@@ -163,6 +213,7 @@ function voters(address) external view returns (bool voted, uint256 vote)
 |---|---|---|
 | voted | bool | undefined |
 | vote | uint256 | undefined |
+| encryptedVote | bytes32 | undefined |
 
 
 
