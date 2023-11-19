@@ -1,0 +1,70 @@
+{
+    "methods": {
+        "MAX_ELIGIBLE_VOTERS()": {
+            "stateMutability": "view",
+            "code": "function MAX_ELIGIBLE_VOTERS() external view returns (uint256)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            }
+        },
+        "addEligibleVoter(address)": {
+            "stateMutability": "nonpayable",
+            "code": "function addEligibleVoter(address _voter) external nonpayable returns (address)",
+            "inputs": {
+                "_voter": {
+                    "type": "address"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        },
+        "admin()": {
+            "stateMutability": "view",
+            "code": "function admin() external view returns (address)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        },
+        "allowedAddresses(address)": {
+            "stateMutability": "view",
+            "code": "function allowedAddresses(address) external view returns (bool)",
+            "inputs": {
+                "_0": {
+                    "type": "address"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "bool"
+                }
+            }
+        },
+        "eligibleVoters(uint256)": {
+            "stateMutability": "view",
+            "code": "function eligibleVoters(uint256) external view returns (address)",
+            "inputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        }
+    },
+    "events": {},
+    "errors": {},
+    "path": "",
+    "name": "Eligibility"
+}
