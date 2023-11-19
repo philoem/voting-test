@@ -1,0 +1,22 @@
+{
+    "methods": {
+        "stringToUint(string)": {
+            "stateMutability": "pure",
+            "code": "function stringToUint(string _str) external pure returns (uint256)",
+            "inputs": {
+                "_str": {
+                    "type": "string"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            }
+        }
+    },
+    "events": {},
+    "errors": {},
+    "path": "/Library",
+    "name": "Hashing"
+}
