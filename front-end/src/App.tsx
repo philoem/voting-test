@@ -7,6 +7,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(false)
   const [nbrOfStarWArs, setNbrOfStarWArs] = useState(0)
   const [nbrStarTrek, setNbrStarTrek] = useState(0)
+  const [responseVoter, setResponseVoter] = useState('')
 
   useEffect(() => {
     isConnected === false ? console.log('Votant non connecté à son wallet') : console.log('Votant connecté à son wallet')
@@ -35,11 +36,13 @@ function App() {
   const starWarsVote = async () => {
     setNbrOfStarWArs(nbrOfStarWArs + 1)
     setIsVoted(true)
+    setResponseVoter('Star Wars')
   }
 
   const starTrekVote = async () => {
     setNbrStarTrek(nbrStarTrek + 1)
     setIsVoted(true)
+    setResponseVoter('Star Trek')
   }
 
   return (
@@ -79,6 +82,9 @@ function App() {
               </p>
               <p>
                 Star Trek : {nbrStarTrek}
+              </p>
+              <p>
+                {responseVoter}
               </p>
             </>
           )}
