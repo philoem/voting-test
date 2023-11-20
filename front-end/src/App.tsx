@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     isConnected === false ? console.log('Votant non connecté à son wallet') : console.log('Votant connecté à son wallet')
     isVoted === true ? console.log('voter is already voted') : console.log('voter is not yet voted')
-  })
+  }, [isConnected, isVoted])
   
 
   const connectWallet = async () => {
@@ -58,7 +58,7 @@ function App() {
       {isConnected && (
         <>
           <p className="read-the-docs">
-            Which prefer between :
+            Which do you prefer between :
           </p>
           <button onClick={() => starWarsVote()} disabled={isVoted}>
             Star Wars
