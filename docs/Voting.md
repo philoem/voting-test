@@ -10,43 +10,10 @@
 
 ## Methods
 
-### addEligibleVoter
+### commitHashes
 
 ```solidity
-function addEligibleVoter(address _voter) external nonpayable
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _voter | address | undefined |
-
-### admin
-
-```solidity
-function admin() external view returns (address)
-```
-
-
-
-
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
-
-### allowedAddresses
-
-```solidity
-function allowedAddresses(address) external view returns (bool)
+function commitHashes(address) external view returns (bytes32)
 ```
 
 
@@ -63,89 +30,7 @@ function allowedAddresses(address) external view returns (bool)
 
 | Name | Type | Description |
 |---|---|---|
-| _0 | bool | undefined |
-
-### eligibleVoters
-
-```solidity
-function eligibleVoters(uint256) external view returns (address)
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | uint256 | undefined |
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
-
-### hashingVote
-
-```solidity
-function hashingVote(bytes32 _candidate) external pure returns (uint256)
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _candidate | bytes32 | undefined |
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | uint256 | undefined |
-
-### removeEligibleVoter
-
-```solidity
-function removeEligibleVoter(address _voter) external nonpayable
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _voter | address | undefined |
-
-### stringToUint
-
-```solidity
-function stringToUint(string _str) external pure returns (uint256)
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _str | string | undefined |
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | uint256 | undefined |
+| _0 | bytes32 | undefined |
 
 ### vote
 
@@ -194,7 +79,7 @@ function voteCount(uint256) external view returns (uint256)
 ### voters
 
 ```solidity
-function voters(address) external view returns (bool voted, uint256 vote, bytes32 encryptedVote)
+function voters(address) external view returns (bool voted, uint256 vote, bool committed, bytes32 encryptedVote)
 ```
 
 
@@ -213,6 +98,7 @@ function voters(address) external view returns (bool voted, uint256 vote, bytes3
 |---|---|---|
 | voted | bool | undefined |
 | vote | uint256 | undefined |
+| committed | bool | undefined |
 | encryptedVote | bytes32 | undefined |
 
 
