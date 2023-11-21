@@ -14,4 +14,8 @@ pragma solidity ^0.8.20;
       uint256 result = uint256(hashingVote(hash));
       return result;
     }
+
+    function generatedSaltToCommitHash() public view returns(bytes32) {
+      return keccak256(abi.encodePacked(block.timestamp, msg.sender));
+    }
   }

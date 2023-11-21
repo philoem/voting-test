@@ -4,10 +4,6 @@ pragma solidity ^0.8.20;
 import { Hashing } from './Library/HashingLibrary.sol';
 import './Eligibility.sol';
 
-function generatedSaltToCommitHash() view returns(bytes32) {
-  return keccak256(abi.encodePacked(block.timestamp, msg.sender));
-}
-
 contract Voting {
 
   Eligibility eligibilityInstance;
@@ -39,7 +35,7 @@ contract Voting {
 
     // Commit-reveal system
     require(voters[msg.sender].committed);
-    bytes32 commitHash = keccak256(abi.encodePacked(_candidate, generatedSaltToCommitHash()));
+    bytes32 commitHash = keccak256(abi.encodePacked(_candidate, Hashing.generatedSaltToCommitHash()));
     commitVote(commitHash);
     require(commitHashes[msg.sender] == commitHash, "Invalid commit hash");
 
