@@ -1,6 +1,14 @@
 import { useEffect, useState, useId } from 'react'
 import './App.css'
 
+const cutStringAfterSecondSpace = (str: string) => {
+  const words = str.split(' ');
+  if (words.length > 2) {
+    return words.slice(0, 2).join(' ');
+  }
+  return str;
+}
+
 function App() {
   const id = useId()
   const [isVoted, setIsVoted] = useState(false)
@@ -22,7 +30,7 @@ function App() {
   // Countdown simulated to display winner
   useEffect(() => {
     if (isCountdownActive && count === 0) {
-      setTheWinnerIs(`The winner is : ${cutStringAfterSecondSpace(responseVoter)}`)
+      setTheWinnerIs(`The winner is    :    ${cutStringAfterSecondSpace(responseVoter)}`)
       return;
     }
     if(isCountdownActive) {
@@ -67,15 +75,7 @@ function App() {
     setIsVoted(true)
     setResponseVoter(`Star Trek ${id}`)
     setIsCountdownActive(true)
-  }
-
-  const cutStringAfterSecondSpace = (str: string) => {
-    const words = str.split(' ');
-    if (words.length > 2) {
-      return words.slice(0, 2).join(' ');
-    }
-    return str;
-  }
+  }  
 
   return (
     <>
@@ -106,25 +106,20 @@ function App() {
               <p>
                 Thank you for voting !
               </p>
-              <p>
-                {count}
-              </p>
-              <p>
-                {voter}
-              </p>
-              <p>
-                Star Wars : {nbrOfStarWArs}
-              </p>
-              <p>
-                Star Trek : {nbrStarTrek}
-              </p>
-              <p>
-                {responseVoter}
-              </p>
+              {count !== 0 && (
+                <>
+                  <p>
+                    The result of the vote is coming soon
+                  </p> 
+                  <div className="card-countdown">
+                    <div className="dot-elastic"></div>
+                  </div>
+                </>
+              )}
               {count === 0 && (
-                <p>
+                <h2 className={`${nbrOfStarWArs > nbrStarTrek ? 'font-winner-star-wars' : 'font-winner-star-trek'}`}>
                   {theWinnerIs}
-                </p>
+                </h2>
               )}              
             </>
           )}
