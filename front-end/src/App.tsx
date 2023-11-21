@@ -1,19 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useId } from 'react'
 import './App.css'
 
 function App() {
+  const id = useId()
   const [isVoted, setIsVoted] = useState(false)
   const [voter, setVoter] = useState('')
   const [isConnected, setIsConnected] = useState(false)
   const [nbrOfStarWArs, setNbrOfStarWArs] = useState(0)
   const [nbrStarTrek, setNbrStarTrek] = useState(0)
   const [responseVoter, setResponseVoter] = useState('')
+  // Countdown
+  const [count, setCount] = useState(10);
+  const [theWinnerIs, setTheWinnerIs] = useState('')
+  const [isCountdownActive, setIsCountdownActive] = useState(false)
 
   useEffect(() => {
     isConnected === false ? console.log('Votant non connecté à son wallet') : console.log('Votant connecté à son wallet')
     isVoted === true ? console.log('voter is already voted') : console.log('voter is not yet voted')
   }, [isConnected, isVoted])
-  
+
+  // Countdown simulated to display winner
+  useEffect(() => {
+    if (isCountdownActive && count === 0) {
+      setTheWinnerIs(`The winner is : ${cutStringAfterSecondSpace(responseVoter)}`)
+      return;
+    }
+    if(isCountdownActive) {
+
+      const interval = setInterval(() => {
+        setCount((prevCount) => prevCount - 1)
+      }, 1000)
+      
+      return () => {
+        clearInterval(interval)
+      }
+    }
+  }, [count, isCountdownActive, responseVoter])
 
   const connectWallet = async () => {
     try {
@@ -36,13 +58,23 @@ function App() {
   const starWarsVote = async () => {
     setNbrOfStarWArs(nbrOfStarWArs + 1)
     setIsVoted(true)
-    setResponseVoter('Star Wars')
+    setResponseVoter(`Star Wars ${id}`)
+    setIsCountdownActive(true)
   }
 
   const starTrekVote = async () => {
     setNbrStarTrek(nbrStarTrek + 1)
     setIsVoted(true)
-    setResponseVoter('Star Trek')
+    setResponseVoter(`Star Trek ${id}`)
+    setIsCountdownActive(true)
+  }
+
+  const cutStringAfterSecondSpace = (str: string) => {
+    const words = str.split(' ');
+    if (words.length > 2) {
+      return words.slice(0, 2).join(' ');
+    }
+    return str;
   }
 
   return (
@@ -75,6 +107,9 @@ function App() {
                 Thank you for voting !
               </p>
               <p>
+                {count}
+              </p>
+              <p>
                 {voter}
               </p>
               <p>
@@ -86,6 +121,11 @@ function App() {
               <p>
                 {responseVoter}
               </p>
+              {count === 0 && (
+                <p>
+                  {theWinnerIs}
+                </p>
+              )}              
             </>
           )}
         </>
