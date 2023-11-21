@@ -1,5 +1,15 @@
 {
     "methods": {
+        "generatedSaltToCommitHash()": {
+            "stateMutability": "view",
+            "code": "function generatedSaltToCommitHash() external view returns (bytes32)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "bytes32"
+                }
+            }
+        },
         "stringToUint(string)": {
             "stateMutability": "pure",
             "code": "function stringToUint(string _str) external pure returns (uint256)",
