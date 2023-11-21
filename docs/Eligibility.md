@@ -27,28 +27,6 @@ function MAX_ELIGIBLE_VOTERS() external view returns (uint256)
 |---|---|---|
 | _0 | uint256 | undefined |
 
-### addEligibleVoter
-
-```solidity
-function addEligibleVoter(address _voter) external nonpayable returns (address)
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _voter | address | undefined |
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
-
 ### admin
 
 ```solidity
@@ -65,28 +43,6 @@ function admin() external view returns (address)
 | Name | Type | Description |
 |---|---|---|
 | _0 | address | undefined |
-
-### allowedAddresses
-
-```solidity
-function allowedAddresses(address) external view returns (bool)
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | address | undefined |
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | bool | undefined |
 
 ### eligibleVoters
 
@@ -109,6 +65,23 @@ function eligibleVoters(uint256) external view returns (address)
 | Name | Type | Description |
 |---|---|---|
 | _0 | address | undefined |
+
+### getVoters
+
+```solidity
+function getVoters() external view returns (address[])
+```
+
+
+
+
+
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | address[] | undefined |
 
 
 
