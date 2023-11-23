@@ -1,9 +1,13 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.20;
 
+import './MerkleTreeProof.sol';
+
 import "hardhat/console.sol";
 
 contract Eligibility {
+
+  MerkleTreeProof merkleTreeProofInstance;
 
   uint256 public constant MAX_ELIGIBLE_VOTERS = 10;
 
@@ -11,8 +15,10 @@ contract Eligibility {
   mapping(address => bool) allowedAddresses;
   address public admin;
 
-  constructor() {
+  constructor(address _merkleTreeProofInstance) {
     admin = msg.sender;
+
+    merkleTreeProofInstance = MerkleTreeProof(_merkleTreeProofInstance);
     
     eligibleVoters.push(admin);
     allowedAddresses[admin] = true; 

@@ -2,12 +2,10 @@
 pragma solidity ^0.8.20;
 
 import { Hashing } from './Library/HashingLibrary.sol';
-// import './Eligibility.sol';
 import './MerkleTreeProof.sol';
 
 contract Voting {
-
-  // Eligibility eligibilityInstance;
+  
   MerkleTreeProof merkleTreeProofInstance;
 
   struct Voter {
@@ -22,7 +20,6 @@ contract Voting {
   mapping(address => bytes32) public commitHashes;
   
   constructor(address _merkleTreeProofInstance) {
-    // eligibilityInstance = Eligibility(_eligibilityInstance);
     merkleTreeProofInstance = MerkleTreeProof(_merkleTreeProofInstance);
   }
 
@@ -34,6 +31,8 @@ contract Voting {
   }
 
   function vote(string calldata _candidate) public returns(uint256) {
+    bytes32 addressBytes = keccak256(abi.encodePacked(msg.sender));
+    require(merkleTreeProofInstance.merkleRoot() == addressBytes, "Invalid merkle root");
     require(!voters[msg.sender].voted, "Voter has already voted");
 
     // Commit-reveal system
