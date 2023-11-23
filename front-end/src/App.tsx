@@ -1,31 +1,32 @@
 import { useEffect, useState, useId } from 'react'
 import './App.css'
-import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
-import { ethers } from "hardhat";
-
-const cutStringAfterSecondSpace = (str: string) => {
-  const words = str.split(' ');
-  if (words.length > 2) {
-    return words.slice(0, 2).join(' ');
-  }
-  return str;
-}
+import useConnectWallet from './hooks/useConnectWallet'
+import useCutStringAfterSecondSpace from './hooks/useCutStringAfterSecondSpace'
+// import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
+import { ethers } from "ethers";
 
 function App() {
   const id = useId()
+  const { isConnected, ethereum, connectingWallet } = useConnectWallet()
+  const [responseVoter, setResponseVoter] = useState('')
+  const cutStringAfterSecondSpace = useCutStringAfterSecondSpace(responseVoter)
+
   const [isVoted, setIsVoted] = useState(false)
-  const [voter, setVoter] = useState('')
-  const [isConnected, setIsConnected] = useState(false)
   const [nbrOfStarWArs, setNbrOfStarWArs] = useState(0)
   const [nbrStarTrek, setNbrStarTrek] = useState(0)
-  const [responseVoter, setResponseVoter] = useState('')
   // Countdown
   const [count, setCount] = useState(10);
   const [theWinnerIs, setTheWinnerIs] = useState('')
   const [isCountdownActive, setIsCountdownActive] = useState(false)
 
-  // Interact with smart contract
-  console.log('Contract :>> ', Contract);
+  // Interact with smart contract and after move them to custom hooks
+  // const { ethereum } = window
+  if (ethereum) {
+    const provider = new ethers.BrowserProvider(ethereum)
+    console.log('provider :>> ', provider);
+  } else {
+    console.log('ethereum is not defined');
+  }
 
   useEffect(() => {
     isConnected === false ? console.log('Votant non connecté à son wallet') : console.log('Votant connecté à son wallet')
@@ -35,7 +36,7 @@ function App() {
   // Countdown simulated to display winner
   useEffect(() => {
     if (isCountdownActive && count === 0) {
-      setTheWinnerIs(`The winner is    :    ${cutStringAfterSecondSpace(responseVoter)}`)
+      setTheWinnerIs(`The winner is    :    ${cutStringAfterSecondSpace}`)
       return;
     }
     if(isCountdownActive) {
@@ -48,25 +49,7 @@ function App() {
         clearInterval(interval)
       }
     }
-  }, [count, isCountdownActive, responseVoter])
-
-  const connectWallet = async () => {
-    try {
-      const { ethereum } = window
-      if (!ethereum) {
-        alert('Get MetaMask!')
-        return
-      }
-      const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
-      })
-      console.log('Connected', accounts[0])
-      setVoter(accounts[0])
-      setIsConnected(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  }, [count, cutStringAfterSecondSpace, isCountdownActive, responseVoter])
 
   const starWarsVote = async () => {
     setNbrOfStarWArs(nbrOfStarWArs + 1)
@@ -87,7 +70,7 @@ function App() {
       <h1>Simply Vote</h1>
       {!isConnected && (        
         <div className="card">
-          <button onClick={() => connectWallet()}>
+          <button onClick={() => connectingWallet()}>
             Connect your wallet
           </button>
           <p>
