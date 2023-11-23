@@ -2,11 +2,13 @@
 pragma solidity ^0.8.20;
 
 import { Hashing } from './Library/HashingLibrary.sol';
-import './Eligibility.sol';
+// import './Eligibility.sol';
+import './MerkleTreeProof.sol';
 
 contract Voting {
 
-  Eligibility eligibilityInstance;
+  // Eligibility eligibilityInstance;
+  MerkleTreeProof merkleTreeProofInstance;
 
   struct Voter {
     bool voted;
@@ -19,8 +21,9 @@ contract Voting {
   mapping(uint256 => uint256) public voteCount;
   mapping(address => bytes32) public commitHashes;
   
-  constructor(address _eligibilityInstance) {
-    eligibilityInstance = Eligibility(_eligibilityInstance);
+  constructor(address _merkleTreeProofInstance) {
+    // eligibilityInstance = Eligibility(_eligibilityInstance);
+    merkleTreeProofInstance = MerkleTreeProof(_merkleTreeProofInstance);
   }
 
   function commitVote(bytes32 _commitHash) internal {

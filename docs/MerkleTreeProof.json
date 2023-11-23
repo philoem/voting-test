@@ -1,0 +1,38 @@
+{
+    "methods": {
+        "merkleRoot()": {
+            "stateMutability": "view",
+            "code": "function merkleRoot() external view returns (bytes32)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "bytes32"
+                }
+            }
+        },
+        "verify(bytes32[],bytes32)": {
+            "stateMutability": "view",
+            "code": "function verify(bytes32[] proof, bytes32 leaf) external view returns (bool)",
+            "inputs": {
+                "proof": {
+                    "type": "bytes32[]",
+                    "description": "The proof to be verified"
+                },
+                "leaf": {
+                    "type": "bytes32",
+                    "description": "data hashed to be verified"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "bool"
+                }
+            },
+            "notice": "Verify if a proof is valid"
+        }
+    },
+    "events": {},
+    "errors": {},
+    "path": "",
+    "name": "MerkleTreeProof"
+}
