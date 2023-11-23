@@ -1,5 +1,7 @@
 import { useEffect, useState, useId } from 'react'
 import './App.css'
+import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
+import { ethers } from "hardhat";
 
 const cutStringAfterSecondSpace = (str: string) => {
   const words = str.split(' ');
@@ -21,6 +23,9 @@ function App() {
   const [count, setCount] = useState(10);
   const [theWinnerIs, setTheWinnerIs] = useState('')
   const [isCountdownActive, setIsCountdownActive] = useState(false)
+
+  // Interact with smart contract
+  console.log('Contract :>> ', Contract);
 
   useEffect(() => {
     isConnected === false ? console.log('Votant non connecté à son wallet') : console.log('Votant connecté à son wallet')
@@ -95,10 +100,10 @@ function App() {
           <p className="read-the-docs">
             Which do you prefer between :
           </p>
-          <button onClick={() => starWarsVote()} disabled={isVoted}>
+          <button id='star-wars' onClick={() => starWarsVote()} disabled={isVoted}>
             Star Wars
           </button>
-          <button onClick={() => starTrekVote()} disabled={isVoted}>
+          <button id='star-trek' onClick={() => starTrekVote()} disabled={isVoted}>
             Star Trek
           </button>
           {isVoted && (
