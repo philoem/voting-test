@@ -3,7 +3,6 @@ import './App.css'
 import useConnectWallet from './hooks/useConnectWallet'
 import useCutStringAfterSecondSpace from './hooks/useCutStringAfterSecondSpace'
 import useCountDownSimulated from './hooks/useCountDownSimulated'
-import useInitContract from './hooks/useInitContract'
 import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
 import { ethers } from "ethers";
 
@@ -13,8 +12,6 @@ function App() {
   const [responseVoter, setResponseVoter] = useState('')
   const cutStringAfterSecondSpace = useCutStringAfterSecondSpace(responseVoter)
   const { count, theWinnerIs, setIsCountdownActive } = useCountDownSimulated(cutStringAfterSecondSpace)
-  const initContract = useInitContract()
-  console.log('initContract :>> ', initContract);
 
   const [isVoted, setIsVoted] = useState(false)
   const [nbrOfStarWArs, setNbrOfStarWArs] = useState(0)
