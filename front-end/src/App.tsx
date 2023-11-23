@@ -2,7 +2,9 @@ import { useEffect, useState, useId } from 'react'
 import './App.css'
 import useConnectWallet from './hooks/useConnectWallet'
 import useCutStringAfterSecondSpace from './hooks/useCutStringAfterSecondSpace'
-// import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
+import useCountDownSimulated from './hooks/useCountDownSimulated'
+import useInitContract from './hooks/useInitContract'
+import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
 import { ethers } from "ethers";
 
 function App() {
@@ -10,60 +12,49 @@ function App() {
   const { isConnected, ethereum, connectingWallet } = useConnectWallet()
   const [responseVoter, setResponseVoter] = useState('')
   const cutStringAfterSecondSpace = useCutStringAfterSecondSpace(responseVoter)
+  const { count, theWinnerIs, setIsCountdownActive } = useCountDownSimulated(cutStringAfterSecondSpace)
+  const initContract = useInitContract()
+  console.log('initContract :>> ', initContract);
 
   const [isVoted, setIsVoted] = useState(false)
   const [nbrOfStarWArs, setNbrOfStarWArs] = useState(0)
   const [nbrStarTrek, setNbrStarTrek] = useState(0)
-  // Countdown
-  const [count, setCount] = useState(10);
-  const [theWinnerIs, setTheWinnerIs] = useState('')
-  const [isCountdownActive, setIsCountdownActive] = useState(false)
-
-  // Interact with smart contract and after move them to custom hooks
-  // const { ethereum } = window
-  if (ethereum) {
-    const provider = new ethers.BrowserProvider(ethereum)
-    console.log('provider :>> ', provider);
-  } else {
-    console.log('ethereum is not defined');
-  }
 
   useEffect(() => {
     isConnected === false ? console.log('Votant non connecté à son wallet') : console.log('Votant connecté à son wallet')
     isVoted === true ? console.log('voter is already voted') : console.log('voter is not yet voted')
   }, [isConnected, isVoted])
 
-  // Countdown simulated to display winner
-  useEffect(() => {
-    if (isCountdownActive && count === 0) {
-      setTheWinnerIs(`The winner is    :    ${cutStringAfterSecondSpace}`)
-      return;
+  const hasVoted = async (choice: string) => {
+    console.log('choice :>> ', choice);
+    if (ethereum) {
+      const provider = new ethers.BrowserProvider(ethereum)
+      const signer = await provider.getSigner()
+      const abi = Contract.abi
+      const contract = new ethers.Contract(signer.address, abi, signer)
+      await contract.vote({
+        gasLimit: 300000,
+        gasPrice: ethers.parseUnits('100', 'gwei'),
+      })
+    } else {
+      console.log('ethereum is not defined');
     }
-    if(isCountdownActive) {
-
-      const interval = setInterval(() => {
-        setCount((prevCount) => prevCount - 1)
-      }, 1000)
-      
-      return () => {
-        clearInterval(interval)
-      }
+    switch(choice) {
+      case 'choiceOne':
+        setNbrOfStarWArs(nbrOfStarWArs + 1)
+        setIsVoted(true)
+        setResponseVoter(`Star Wars ${id}`)
+        setIsCountdownActive(true)
+        break
+      case 'choiceTwo':
+          setNbrStarTrek(nbrStarTrek + 1)
+          setIsVoted(true)
+          setResponseVoter(`Star Trek ${id}`)
+          setIsCountdownActive(true)
+          break
     }
-  }, [count, cutStringAfterSecondSpace, isCountdownActive, responseVoter])
-
-  const starWarsVote = async () => {
-    setNbrOfStarWArs(nbrOfStarWArs + 1)
-    setIsVoted(true)
-    setResponseVoter(`Star Wars ${id}`)
-    setIsCountdownActive(true)
+    
   }
-
-  const starTrekVote = async () => {
-    setNbrStarTrek(nbrStarTrek + 1)
-    setIsVoted(true)
-    setResponseVoter(`Star Trek ${id}`)
-    setIsCountdownActive(true)
-  }  
 
   return (
     <>
@@ -83,10 +74,10 @@ function App() {
           <p className="read-the-docs">
             Which do you prefer between :
           </p>
-          <button id='star-wars' onClick={() => starWarsVote()} disabled={isVoted}>
+          <button id='star-wars' onClick={() => hasVoted('choiceOne')} disabled={isVoted}>
             Star Wars
           </button>
-          <button id='star-trek' onClick={() => starTrekVote()} disabled={isVoted}>
+          <button id='star-trek' onClick={() => hasVoted('choiceTwo')} disabled={isVoted}>
             Star Trek
           </button>
           {isVoted && (
