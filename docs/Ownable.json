@@ -1,0 +1,24 @@
+{
+    "methods": {
+        "ownable()": {
+            "stateMutability": "nonpayable",
+            "code": "function ownable() external nonpayable",
+            "inputs": {},
+            "outputs": {}
+        },
+        "voterAuthorized()": {
+            "stateMutability": "view",
+            "code": "function voterAuthorized() external view returns (address)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        }
+    },
+    "events": {},
+    "errors": {},
+    "path": "",
+    "name": "Ownable"
+}
