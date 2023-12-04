@@ -9,9 +9,13 @@ async function main() {
 
     const whitelistGenerator = new WhitelistGenerator(addressWhitelisted, merkleTree, "whiteList.json");
     const whitelistData = whitelistGenerator.generateWhitelistData();
-    whitelistGenerator.writeWhitelistFile(whitelistData);
+    const data = whitelistGenerator.writeWhitelistFile(whitelistData);
+    const root = merkleTreeBuilder.getRoot();
+    console.log('root :>> ', root);
 
-    console.log("Merkle tree and whitelist generated successfully.");
+    !data ? console.log(`Error: data is ${data}`) 
+     : console.log("Merkle tree and whitelist generated successfully."); return data;
+    
   } catch (error) {
     console.error("Error:", error);
   }
