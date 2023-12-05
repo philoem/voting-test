@@ -23,7 +23,7 @@ class MerkleTreeBuilder {
     }
 
     getRoot() {
-        return this.tree.getRoot().toString('hex');
+        return this.tree.getHexRoot().toString('hex');
     }
 }
 
