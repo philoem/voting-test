@@ -10,7 +10,7 @@ contract MerkleTreeProof {
 
   /**
    * @notice Verify if a proof is valid
-   * @param proof The proof to be verified
+   * @param proof The proof to be verified (concatenated hashs of the both previous leaves)
    * @param leaf data hashed to be verified
   */
   function verify(bytes32[] memory proof, bytes32 leaf) public view returns (bool) {
