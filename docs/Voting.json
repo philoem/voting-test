@@ -14,6 +14,28 @@
                 }
             }
         },
+        "isWinner()": {
+            "stateMutability": "nonpayable",
+            "code": "function isWinner() external nonpayable",
+            "inputs": {},
+            "outputs": {}
+        },
+        "ownable()": {
+            "stateMutability": "nonpayable",
+            "code": "function ownable() external nonpayable",
+            "inputs": {},
+            "outputs": {}
+        },
+        "revealVote(string)": {
+            "stateMutability": "nonpayable",
+            "code": "function revealVote(string _answer) external nonpayable",
+            "inputs": {
+                "_answer": {
+                    "type": "string"
+                }
+            },
+            "outputs": {}
+        },
         "vote(string)": {
             "stateMutability": "nonpayable",
             "code": "function vote(string _candidate) external nonpayable returns (uint256)",
@@ -42,6 +64,16 @@
                 }
             }
         },
+        "voterAuthorized()": {
+            "stateMutability": "view",
+            "code": "function voterAuthorized() external view returns (address)",
+            "inputs": {},
+            "outputs": {
+                "_0": {
+                    "type": "address"
+                }
+            }
+        },
         "voters(address)": {
             "stateMutability": "view",
             "code": "function voters(address) external view returns (bool voted, uint256 vote, bool committed, bytes32 encryptedVote)",
@@ -64,9 +96,33 @@
                     "type": "bytes32"
                 }
             }
+        },
+        "winnerIs(uint256)": {
+            "stateMutability": "view",
+            "code": "function winnerIs(uint256) external view returns (string)",
+            "inputs": {
+                "_0": {
+                    "type": "uint256"
+                }
+            },
+            "outputs": {
+                "_0": {
+                    "type": "string"
+                }
+            }
         }
     },
-    "events": {},
+    "events": {
+        "WinnerIs": {
+            "code": "event WinnerIs(string candidate)",
+            "inputs": {
+                "candidate": {
+                    "type": "string",
+                    "indexed": false
+                }
+            }
+        }
+    },
     "errors": {},
     "path": "",
     "name": "Voting"

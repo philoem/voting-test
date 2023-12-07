@@ -32,6 +32,44 @@ function commitHashes(address) external view returns (bytes32)
 |---|---|---|
 | _0 | bytes32 | undefined |
 
+### isWinner
+
+```solidity
+function isWinner() external nonpayable
+```
+
+
+
+
+
+
+### ownable
+
+```solidity
+function ownable() external nonpayable
+```
+
+
+
+
+
+
+### revealVote
+
+```solidity
+function revealVote(string _answer) external nonpayable
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| _answer | string | undefined |
+
 ### vote
 
 ```solidity
@@ -76,6 +114,23 @@ function voteCount(uint256) external view returns (uint256)
 |---|---|---|
 | _0 | uint256 | undefined |
 
+### voterAuthorized
+
+```solidity
+function voterAuthorized() external view returns (address)
+```
+
+
+
+
+
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | address | undefined |
+
 ### voters
 
 ```solidity
@@ -101,6 +156,47 @@ function voters(address) external view returns (bool voted, uint256 vote, bool c
 | committed | bool | undefined |
 | encryptedVote | bytes32 | undefined |
 
+### winnerIs
+
+```solidity
+function winnerIs(uint256) external view returns (string)
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | uint256 | undefined |
+
+#### Returns
+
+| Name | Type | Description |
+|---|---|---|
+| _0 | string | undefined |
+
+
+
+## Events
+
+### WinnerIs
+
+```solidity
+event WinnerIs(string candidate)
+```
+
+
+
+
+
+#### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| candidate  | string | undefined |
 
 
 
