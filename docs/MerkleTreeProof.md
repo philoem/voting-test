@@ -10,45 +10,6 @@
 
 ## Methods
 
-### generateRoot
-
-```solidity
-function generateRoot(bytes32[] leaves) external pure returns (bytes32)
-```
-
-
-
-
-
-#### Parameters
-
-| Name | Type | Description |
-|---|---|---|
-| leaves | bytes32[] | undefined |
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | bytes32 | undefined |
-
-### getRoot
-
-```solidity
-function getRoot() external view returns (bytes32)
-```
-
-
-
-
-
-
-#### Returns
-
-| Name | Type | Description |
-|---|---|---|
-| _0 | bytes32 | undefined |
-
 ### merkleRoot
 
 ```solidity

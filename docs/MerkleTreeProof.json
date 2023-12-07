@@ -1,29 +1,5 @@
 {
     "methods": {
-        "generateRoot(bytes32[])": {
-            "stateMutability": "pure",
-            "code": "function generateRoot(bytes32[] leaves) external pure returns (bytes32)",
-            "inputs": {
-                "leaves": {
-                    "type": "bytes32[]"
-                }
-            },
-            "outputs": {
-                "_0": {
-                    "type": "bytes32"
-                }
-            }
-        },
-        "getRoot()": {
-            "stateMutability": "view",
-            "code": "function getRoot() external view returns (bytes32)",
-            "inputs": {},
-            "outputs": {
-                "_0": {
-                    "type": "bytes32"
-                }
-            }
-        },
         "merkleRoot()": {
             "stateMutability": "view",
             "code": "function merkleRoot() external view returns (bytes32)",
