@@ -24,31 +24,46 @@ function App() {
 
   const hasVoted = async (choice: string) => {
     console.log('choice :>> ', choice);
+    let signer;
+    let contract;
+    let voted;
     if (ethereum) {
       const provider = new ethers.BrowserProvider(ethereum)
-      const signer = await provider.getSigner()
+      signer = await provider.getSigner()
       const abi = Contract.abi
-      const contract = new ethers.Contract(signer.address, abi, signer)
+      contract = new ethers.Contract(signer.address, abi, signer)
       await contract.vote({
         gasLimit: 300000,
         gasPrice: ethers.parseUnits('100', 'gwei'),
       })
+      voted = await contract.vote('Star Wars', {
+        gasLimit: 300000,
+        gasPrice: ethers.parseUnits('100', 'gwei'),
+      })
+
     } else {
       console.log('ethereum is not defined');
     }
     switch(choice) {
       case 'choiceOne':
+        console.log('contract :>> ', contract);
+        console.log('signer?.address :>> ', signer?.address);
+        console.log('voted :>> ', voted);
+        // voted = await contract.vote('Star Wars', {
+        //   gasLimit: 300000,
+        //   gasPrice: ethers.parseUnits('100', 'gwei'),
+        // })
         setNbrOfStarWArs(nbrOfStarWArs + 1)
         setIsVoted(true)
         setResponseVoter(`Star Wars ${id}`)
         setIsCountdownActive(true)
         break
       case 'choiceTwo':
-          setNbrStarTrek(nbrStarTrek + 1)
-          setIsVoted(true)
-          setResponseVoter(`Star Trek ${id}`)
-          setIsCountdownActive(true)
-          break
+        setNbrStarTrek(nbrStarTrek + 1)
+        setIsVoted(true)
+        setResponseVoter(`Star Trek ${id}`)
+        setIsCountdownActive(true)
+        break
     }
     
   }
