@@ -4,6 +4,7 @@ import useConnectWallet from './hooks/useConnectWallet'
 import useCutStringAfterSecondSpace from './hooks/useCutStringAfterSecondSpace'
 import useCountDownSimulated from './hooks/useCountDownSimulated'
 import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
+import Toast from './components/Toast/index'
 import { ethers } from "ethers";
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
           </p>
         </div>
       )}
+      <Toast />
       {isConnected && (
         <>
           <p className="read-the-docs">

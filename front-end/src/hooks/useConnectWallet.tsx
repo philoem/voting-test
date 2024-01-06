@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 const { ethereum } = window
 export default function useConnectWallet() {
@@ -8,7 +9,7 @@ export default function useConnectWallet() {
   const connectingWallet = async () => {
     try {
       if (!ethereum) {
-        alert('Get MetaMask!')
+        toast.error('Get MetaMask!')
         return
       }
       const accounts = await ethereum.request({
@@ -17,6 +18,7 @@ export default function useConnectWallet() {
       console.log('Connected', accounts[0])
       setVoter(accounts[0])
       setIsConnected(true)
+      toast.success('Connected!')
     } catch (error) {
       console.log(error)
     }    
