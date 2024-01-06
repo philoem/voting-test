@@ -68,6 +68,10 @@ function App() {
     
   }
 
+  const reloadPage = () => {
+    window.location.reload();
+  }
+
   return (
     <>
       <h1>Simply Vote</h1>
@@ -108,9 +112,14 @@ function App() {
                 </>
               )}
               {count === 0 && (
+                <>
+                <button className='reload' onClick={() => reloadPage()}>
+                  Go to new vote
+                </button>
                 <h2 className={`${nbrOfStarWArs > nbrStarTrek ? 'font-winner-star-wars' : 'font-winner-star-trek'}`}>
                   {theWinnerIs}
                 </h2>
+                </>
               )}              
             </>
           )}
