@@ -5,6 +5,7 @@ import useCutStringAfterSecondSpace from './hooks/useCutStringAfterSecondSpace'
 import useCountDownSimulated from './hooks/useCountDownSimulated'
 import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
 import Toast from './components/Toast/index'
+import Button from './components/Button/index'
 import { ethers } from "ethers";
 
 function App() {
@@ -78,12 +79,7 @@ function App() {
       <h1>Simply Vote</h1>
       {!isConnected && (        
         <div className="card">
-          <button onClick={() => connectingWallet()}>
-            Connect your wallet
-          </button>
-          <p>
-            Enjoy !
-          </p>
+          <Button text='Connect your wallet' onClick={() => connectingWallet()} disabled={isVoted} />
         </div>
       )}
       <Toast />
@@ -92,12 +88,8 @@ function App() {
           <p className="read-the-docs">
             Which do you prefer between :
           </p>
-          <button id='star-wars' onClick={() => hasVoted('choiceOne')} disabled={isVoted}>
-            Star Wars
-          </button>
-          <button id='star-trek' onClick={() => hasVoted('choiceTwo')} disabled={isVoted}>
-            Star Trek
-          </button>
+          <Button text='Star Wars' onClick={() => hasVoted('choiceOne')} disabled={isVoted} />
+          <Button text='Star Trek' onClick={() => hasVoted('choiceTwo')} disabled={isVoted} />
           {isVoted && (
             <>
               <p>
@@ -115,9 +107,7 @@ function App() {
               )}
               {count === 0 && (
                 <>
-                <button className='reload' onClick={() => reloadPage()}>
-                  Go to new vote
-                </button>
+                <Button text='Go to new vote' className='reload' onClick={() => reloadPage()} />
                 <h2 className={`${nbrOfStarWArs > nbrStarTrek ? 'font-winner-star-wars' : 'font-winner-star-trek'}`}>
                   {theWinnerIs}
                 </h2>
