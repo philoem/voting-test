@@ -2,6 +2,13 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 const { ethereum } = window
+
+/**
+ * Hook for connecting a wallet.
+ *
+ * @return {Object} An object containing the isConnected flag, the ethereum object,
+ *                  and the connectingWallet function.
+ */
 export default function useConnectWallet() {
 	const [voter, setVoter] = useState('')
 	const [isConnected, setIsConnected] = useState(false)
