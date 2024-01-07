@@ -7,7 +7,16 @@ type ButtonProps = {
 	disabled?: boolean
 }
 
-const Button = ({ text, onClick, className, disabled }: ButtonProps) => {
+/**
+ * Renders a button component with the given text, onClick handler, className, and disabled state.
+ *
+ * @param {ButtonProps} text - The text to display on the button.
+ * @param {ButtonProps} onClick - The function to be called when the button is clicked.
+ * @param {ButtonProps} className - The CSS class name(s) to apply to the button.
+ * @param {ButtonProps} disabled - A boolean value indicating whether the button is disabled.
+ * @return {JSX.Element} The rendered button component.
+ */
+const Button = ({ text, onClick, className, disabled }: ButtonProps): JSX.Element => {
 	const [, setHover] = useState(false)
 
 	useEffect(() => {
