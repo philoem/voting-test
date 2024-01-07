@@ -27,7 +27,13 @@ function App() {
 		isVoted === true ? console.log('voter is already voted') : console.log('voter is not yet voted')
 	}, [isConnected, isVoted])
 
-	const hasVoted = async (choice: string) => {
+		/**
+	 * Checks if a user has voted based on the given choice.
+	 *
+	 * @param {string} choice - The user's choice for voting.
+	 * @return {Promise<void>} - A Promise that resolves to nothing.
+	 */
+  const hasVoted = async (choice: string): Promise<void> => {
 		console.log('choice :>> ', choice)
 		let signer
 		let contract
