@@ -12,7 +12,7 @@ import { ethers } from 'ethers'
 function App() {
 	const id = useId()
 	const { isConnected, ethereum, voter, connectingWallet } = useConnectWallet()
-	const [responseVoter, setResponseVoter] = useState('')	
+	const [responseVoter, setResponseVoter] = useState('')
 	const cutStringAfterSecondSpace = useCutStringAfterSecondSpace(responseVoter)
 	const { count, theWinnerIs, setIsCountdownActive } =
 		useCountDownSimulated(cutStringAfterSecondSpace)
@@ -84,7 +84,7 @@ function App() {
 
 	return (
 		<>
-			<Header addressWallet={voter} isConnected={isConnected}/>
+			<Header addressWallet={voter} isConnected={isConnected} />
 			<h1>Simply Vote</h1>
 			{!isConnected && (
 				<div className='card'>
@@ -97,7 +97,7 @@ function App() {
 			)}
 			<Toast />
 			{isConnected && (
-				<>					
+				<>
 					<p className='read-the-docs'>Which do you prefer between :</p>
 					<Button text='Star Wars' onClick={() => hasVoted('choiceOne')} disabled={isVoted} />
 					<Button text='Star Trek' onClick={() => hasVoted('choiceTwo')} disabled={isVoted} />
