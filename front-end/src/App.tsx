@@ -7,6 +7,7 @@ import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
 import Toast from './components/Toast/index'
 import Button from './components/Button/index'
 import Header from './components/Header'
+import Form from './Form'
 import { ethers } from 'ethers'
 
 function App() {
@@ -101,6 +102,7 @@ function App() {
 					<p className='read-the-docs'>Which do you prefer between :</p>
 					<Button text='Star Wars' onClick={() => hasVoted('choiceOne')} disabled={isVoted} />
 					<Button text='Star Trek' onClick={() => hasVoted('choiceTwo')} disabled={isVoted} />
+					<Form />
 					{isVoted && (
 						<>
 							<p>Thank you for voting !</p>
