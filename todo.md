@@ -4,5 +4,8 @@
 - [x] create new component to toasts
 - [x] add package linter Rome
 - [ ] create a dynamic form to imput vote's data
+- [ ] add storybook
+- [ ] add tests
+- [ ] add methods Metamask to check connection
  ## To main folder
  

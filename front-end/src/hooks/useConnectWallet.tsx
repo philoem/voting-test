@@ -22,7 +22,6 @@ export default function useConnectWallet() {
 			const accounts = await ethereum.request({
 				method: 'eth_requestAccounts'
 			})
-			console.log('Connected', accounts[0])
 			setVoter(accounts[0])
 			setIsConnected(true)
 			toast.success('Connected!')

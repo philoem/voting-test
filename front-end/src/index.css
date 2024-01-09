@@ -61,8 +61,8 @@ button:focus-visible {
   font-size: 18px;
   cursor: pointer;
   position: absolute;
-  top: 30px;
-  right: 20px;
+  top: 64px;
+  right: 13px;
 }
 
 @media (prefers-color-scheme: light) {
