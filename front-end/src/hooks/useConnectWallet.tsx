@@ -31,5 +31,5 @@ export default function useConnectWallet() {
 		}
 	}
 
-	return { isConnected, ethereum, connectingWallet }
+	return { isConnected, ethereum, voter, connectingWallet }
 }

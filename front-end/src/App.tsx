@@ -6,12 +6,13 @@ import useCountDownSimulated from './hooks/useCountDownSimulated'
 import Contract from '../../artifacts/contracts/Voting.sol/Voting.json'
 import Toast from './components/Toast/index'
 import Button from './components/Button/index'
+import Header from './components/Header'
 import { ethers } from 'ethers'
 
 function App() {
 	const id = useId()
-	const { isConnected, ethereum, connectingWallet } = useConnectWallet()
-	const [responseVoter, setResponseVoter] = useState('')
+	const { isConnected, ethereum, voter, connectingWallet } = useConnectWallet()
+	const [responseVoter, setResponseVoter] = useState('')	
 	const cutStringAfterSecondSpace = useCutStringAfterSecondSpace(responseVoter)
 	const { count, theWinnerIs, setIsCountdownActive } =
 		useCountDownSimulated(cutStringAfterSecondSpace)
@@ -27,13 +28,13 @@ function App() {
 		isVoted === true ? console.log('voter is already voted') : console.log('voter is not yet voted')
 	}, [isConnected, isVoted])
 
-		/**
+	/**
 	 * Checks if a user has voted based on the given choice.
 	 *
 	 * @param {string} choice - The user's choice for voting.
 	 * @return {Promise<void>} - A Promise that resolves to nothing.
 	 */
-  const hasVoted = async (choice: string): Promise<void> => {
+	const hasVoted = async (choice: string): Promise<void> => {
 		console.log('choice :>> ', choice)
 		let signer
 		let contract
@@ -83,6 +84,7 @@ function App() {
 
 	return (
 		<>
+			<Header addressWallet={voter} isConnected={isConnected}/>
 			<h1>Simply Vote</h1>
 			{!isConnected && (
 				<div className='card'>
@@ -95,7 +97,7 @@ function App() {
 			)}
 			<Toast />
 			{isConnected && (
-				<>
+				<>					
 					<p className='read-the-docs'>Which do you prefer between :</p>
 					<Button text='Star Wars' onClick={() => hasVoted('choiceOne')} disabled={isVoted} />
 					<Button text='Star Trek' onClick={() => hasVoted('choiceTwo')} disabled={isVoted} />

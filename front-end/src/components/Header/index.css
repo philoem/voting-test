@@ -1,0 +1,29 @@
+.header {
+  background-color: brown;
+  z-index: 100;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.content-header { 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text-header {
+  text-align: center;
+  padding-left: 20px;
+}
+
+.address-header {
+  margin-right: 15px;
+  align-self: center;
+  padding-right: 20px;
+  border: 1px solid black;
+  background-color: rgb(19, 19, 83);
+  border-radius: 4%;
+  padding: 5px;
+}
