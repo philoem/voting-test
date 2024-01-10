@@ -34,8 +34,8 @@ const Form = (): JSX.Element => {
 						</div>
 					)
 				})}
-				<Button className='button-form' text='Add' onClick={() => addingFields()} />
 			</form>
+			<Button className='button-form' text='Add' onClick={() => addingFields()} />
 			<Button className='button-form' text='Submit' onClick={() => submit()} />
 		</>
 	)
