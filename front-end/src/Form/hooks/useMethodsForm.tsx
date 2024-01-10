@@ -4,7 +4,7 @@ interface MethodsForm {
 	inputFields: { name: string; description: string }[]
 	handleFormChange: (index: number, event: ChangeEvent<HTMLInputElement>) => void
 	addingFields: () => { name: string; description: string }[]
-	submit: () => void
+	submit: (e: React.FormEvent<HTMLFormElement>) => void
 	removeFields: (index: number) => void
 }
 
@@ -49,12 +49,14 @@ const useMethodsForm = (): MethodsForm => {
 		return inputFields
 	}
 
-	/**
-	 * Executes the submit action.
+		/**
+	 * Submit the form.
 	 *
-	 * @return {void} No return value
+	 * @param {React.FormEvent<HTMLFormElement>} e - The form event.
+	 * @return {void} This function does not return anything.
 	 */
-	const submit = (): void => {
+	const submit = (e: React.FormEvent<HTMLFormElement>): void => {
+		e.preventDefault()
 		console.log(inputFields)
 	}
 

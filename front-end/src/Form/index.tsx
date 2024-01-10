@@ -36,7 +36,7 @@ const Form = (): JSX.Element => {
 				})}
 			</form>
 			<Button className='button-form' text='Add' onClick={() => addingFields()} />
-			<Button className='button-form' text='Submit' onClick={() => submit()} />
+			<Button className='button-form' text='Submit' onClick={(e: React.FormEvent<HTMLFormElement>) => submit(e)} />
 		</>
 	)
 }
