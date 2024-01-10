@@ -8,7 +8,7 @@ import './index.css'
  * @return {JSX.Element} The rendered form.
  */
 const Form = (): JSX.Element => {
-	const { inputFields, handleFormChange, addFields, submit, removeFields } = useMethodsForm()
+	const { inputFields, handleFormChange, addingFields, submit, removeFields } = useMethodsForm()
 
 	return (
 		<>
@@ -30,13 +30,13 @@ const Form = (): JSX.Element => {
 								value={input?.description}
 								onChange={(event) => handleFormChange(index, event)}
 							/>
-							<Button text='Remove' onClick={() => removeFields(index)} />
+							<Button className='button-form' text='Remove' onClick={() => removeFields(index)} />
 						</div>
 					)
 				})}
-				<Button text='Add' onClick={() => addFields()} />
+				<Button className='button-form' text='Add' onClick={() => addingFields()} />
 			</form>
-			<Button text='Submit' onClick={() => submit()} />
+			<Button className='button-form' text='Submit' onClick={() => submit()} />
 		</>
 	)
 }

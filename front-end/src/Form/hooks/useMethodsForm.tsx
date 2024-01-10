@@ -3,7 +3,7 @@ import { useState, ChangeEvent } from 'react'
 interface MethodsForm {
 	inputFields: { name: string; description: string }[]
 	handleFormChange: (index: number, event: ChangeEvent<HTMLInputElement>) => void
-	addFields: () => void
+	addingFields: () => { name: string; description: string }[]
 	submit: () => void
 	removeFields: (index: number) => void
 }
@@ -14,7 +14,7 @@ interface MethodsForm {
  * @return {Object} An object with the following properties:
  *   - inputFields: An array of objects representing the input fields, each with a name and description.
  *   - handleFormChange: A function that updates the values of the input fields based on user input.
- *   - addFields: A function that adds a new input field to the form.
+ *   - addingFields: A function that adds a new input field to the form.
  *   - submit: A function that logs the current state of the input fields.
  *   - removeFields: A function that removes an input field from the form.
  */
@@ -41,11 +41,12 @@ const useMethodsForm = (): MethodsForm => {
 	/**
 	 * Adds a new field to the input fields array.
 	 *
-	 * @return {void}
+	 * @return {array}
 	 */
-	const addFields = (): void => {
+	const addingFields = (): { name: string; description: string; }[] => {
 		const newField = { name: '', description: '' }
 		setInputFields([...inputFields, newField])
+		return inputFields
 	}
 
 	/**
@@ -72,7 +73,7 @@ const useMethodsForm = (): MethodsForm => {
 	return {
 		inputFields,
 		handleFormChange,
-		addFields,
+		addingFields,
 		submit,
 		removeFields
 	}
