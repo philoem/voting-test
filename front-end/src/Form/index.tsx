@@ -8,7 +8,15 @@ import './index.css'
  * @return {JSX.Element} The rendered form.
  */
 const Form = (): JSX.Element => {
-	const { inputFields, handleFormChange, addingFields, submit, removeFields, resetForm, checkIfEmpty } = useMethodsForm()
+	const {
+		inputFields,
+		handleFormChange,
+		addingFields,
+		submit,
+		removeFields,
+		resetForm,
+		checkIfEmpty
+	} = useMethodsForm()
 
 	return (
 		<>
@@ -36,7 +44,12 @@ const Form = (): JSX.Element => {
 				})}
 			</form>
 			<Button className='button-form' text='Add' onClick={() => addingFields()} />
-			<Button className='button-form' text='Submit' onClick={(e: React.FormEvent<HTMLFormElement>) => submit(e)} disabled={checkIfEmpty(inputFields)} />
+			<Button
+				className='button-form'
+				text='Submit'
+				onClick={(e: React.FormEvent<HTMLFormElement>) => submit(e)}
+				disabled={checkIfEmpty(inputFields)}
+			/>
 			<Button className='button-form' text='Reset' onClick={() => resetForm()} />
 		</>
 	)

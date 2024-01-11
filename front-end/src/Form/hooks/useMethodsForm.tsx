@@ -45,13 +45,13 @@ const useMethodsForm = (): MethodsForm => {
 	 *
 	 * @return {array}
 	 */
-	const addingFields = (): { name: string; description: string; }[] => {
+	const addingFields = (): { name: string; description: string }[] => {
 		const newField = { name: '', description: '' }
 		setInputFields([...inputFields, newField])
 		return inputFields
 	}
 
-		/**
+	/**
 	 * Submit the form.
 	 *
 	 * @param {React.FormEvent<HTMLFormElement>} e - The form event.
@@ -74,7 +74,7 @@ const useMethodsForm = (): MethodsForm => {
 		setInputFields(values)
 	}
 
-		/**
+	/**
 	 * Resets the form by setting the input fields to an initial state.
 	 *
 	 * @return {void} This function does not return anything.
@@ -83,7 +83,7 @@ const useMethodsForm = (): MethodsForm => {
 		setInputFields([{ name: '', description: '' }])
 	}
 
-		/**
+	/**
 	 * Check if the input fields are empty.
 	 *
 	 * @param {Array} inputFields - An array of objects containing name and description fields.
