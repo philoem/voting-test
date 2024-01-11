@@ -6,6 +6,8 @@ interface MethodsForm {
 	addingFields: () => { name: string; description: string }[]
 	submit: (e: React.FormEvent<HTMLFormElement>) => void
 	removeFields: (index: number) => void
+	resetForm: () => void
+	checkIfEmpty: (inputFields: { name: string; description: string }[]) => boolean
 }
 
 /**
@@ -72,12 +74,33 @@ const useMethodsForm = (): MethodsForm => {
 		setInputFields(values)
 	}
 
+		/**
+	 * Resets the form by setting the input fields to an initial state.
+	 *
+	 * @return {void} This function does not return anything.
+	 */
+	const resetForm = (): void => {
+		setInputFields([{ name: '', description: '' }])
+	}
+
+		/**
+	 * Check if the input fields are empty.
+	 *
+	 * @param {Array} inputFields - An array of objects containing name and description fields.
+	 * @return {boolean} Returns true if all the input fields are empty, otherwise returns false.
+	 */
+	const checkIfEmpty = (inputFields: { name: string; description: string }[]): boolean => {
+		return inputFields.every((input) => input.name === '' || input.description === '')
+	}
+
 	return {
 		inputFields,
 		handleFormChange,
 		addingFields,
 		submit,
-		removeFields
+		removeFields,
+		resetForm,
+		checkIfEmpty
 	}
 }
 
