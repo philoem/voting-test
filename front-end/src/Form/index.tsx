@@ -50,7 +50,12 @@ const Form = (): JSX.Element => {
 				onClick={(e: React.FormEvent<HTMLFormElement>) => submit(e)}
 				disabled={checkIfEmpty(inputFields)}
 			/>
-			<Button className='button-form' text='Reset' onClick={() => resetForm()} />
+			<Button
+				className='button-form'
+				text='Reset'
+				onClick={() => resetForm()}
+				disabled={checkIfEmpty(inputFields)}
+			/>
 		</>
 	)
 }
