@@ -9,13 +9,11 @@ const Header = ({
 			{isConnected && (
 				<header className='header'>
 					<div className='content-header'>
-						<div className='text-header'>
-							<p>Vous êtes actuellement connecté</p>
-						</div>
+						<h1 className='title-header'>Simply Vote</h1>
 						<div className='address-header'>
 							{`${addressWallet?.substring(0, 8)}...${addressWallet?.substring(
 								addressWallet.length - 3
-							)}`}
+							)}, vous êtes connecté`}
 						</div>
 					</div>
 				</header>
