@@ -65,6 +65,28 @@ button:focus-visible {
   right: 13px;
 }
 
+.container-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description-title {
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  width: 70%;
+}
+
+.button-intro {
+  display: flex;
+  align-self: center;
+  width: 230px;
+  font-size: 19px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
